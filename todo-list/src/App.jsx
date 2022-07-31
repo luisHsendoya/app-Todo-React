@@ -7,7 +7,15 @@ import ListTask from "./components/ListTask";
 
 
 function App() {
-  const [tasks, setTasks]=useState([]);
+  const [tasks, setTasks]=useState([]),
+        [task,setTask]=useState({})
+
+  //this function delete the element selected
+  function deleteTask(id){
+    const newTask= tasks.filter(taskSelected=>taskSelected.id!=id);
+    setTasks(newTask)
+  }
+
  
  
   return (
@@ -18,8 +26,12 @@ function App() {
         <Input 
         tasks={tasks}
         setTasks={setTasks}
-        />
-        <ListTask tasks={tasks}/>
+        task={task}
+        setTask={setTask}/>
+        <ListTask
+        tasks={tasks}
+        setTask={setTask}
+        deleteTask={deleteTask}/>
       </div>
       
    
