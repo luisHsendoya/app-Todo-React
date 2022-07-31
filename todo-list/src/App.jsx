@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import Header from "./components/Header"
 import Input from "./components/Input"
 import ListTask from "./components/ListTask";
@@ -7,8 +7,14 @@ import ListTask from "./components/ListTask";
 
 
 function App() {
-  const [tasks, setTasks]=useState([]),
+  const [tasks, setTasks]=useState(JSON.parse(localStorage.getItem('tasks')) ?? []),
         [task,setTask]=useState({})
+
+  useEffect(()=>{
+    localStorage.setItem('tasks',JSON.stringify(tasks))
+  },[tasks])
+
+
 
   //this function delete the element selected
   function deleteTask(id){
